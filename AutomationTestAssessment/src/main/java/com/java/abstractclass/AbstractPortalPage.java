@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPortalPage {
 
-	protected static final int DEFAULT_VISIBILITY_TIMEOUT = 60;
+	protected static final int DEFAULT_VISIBILITY_TIMEOUT = 30;
 
 	// protected Actions actions;
 	protected WebDriver driver;
@@ -415,9 +415,30 @@ public abstract class AbstractPortalPage {
 	 * @param element
 	 */
 	protected void hover(String elementDescription, WebElement element) {
-		Actions action = new Actions(driver);
+		try {
+			Actions action = new Actions(driver);
 
-		waitForElementVisibility(elementDescription, element);
-		action.moveToElement(element).build().perform();
+			waitForElementVisibility(elementDescription, element);
+			action.moveToElement(element).build().perform();
+		} catch (TimeoutException e) {
+			StringBuffer error = new StringBuffer();
+			error.append("Unable to hover over ").append(getDescription(elementDescription));
+			error.append(" on ").append(getClass().getSimpleName());
+			error.append(" after ").append(DEFAULT_VISIBILITY_TIMEOUT).append(" seconds.");
+			throw new AssertionError(error.toString(), e);
+		}
+	}
+
+	protected void waitForElementTextToChange(String xpath, String elementDescription, String text) {
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		try {		
+			wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath(xpath), text)); 
+		} catch (TimeoutException e) {
+			StringBuffer error = new StringBuffer();
+			error.append("Expected text '").append(text).append("' didn't change for ").append(getDescription(elementDescription));
+			error.append(" on ").append(getClass().getSimpleName());
+			error.append(" after ").append(DEFAULT_VISIBILITY_TIMEOUT).append(" seconds.");
+			throw new AssertionError(error.toString(), e);
+		}
 	}
 }

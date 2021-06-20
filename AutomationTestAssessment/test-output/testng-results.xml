@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="165581" started-at="2021-06-17T23:03:56 CDT" finished-at="2021-06-17T23:06:42 CDT">
+  <suite name="Default suite" duration-ms="11603" started-at="2021-06-19T16:41:24 CDT" finished-at="2021-06-19T16:41:36 CDT">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="165581" started-at="2021-06-17T23:03:56 CDT" finished-at="2021-06-17T23:06:42 CDT">
-      <class name="com.springcm.homepagetests.HomePageTests">
-        <test-method status="PASS" signature="runCorrectChromeDriver()[pri:0, instance:com.springcm.homepagetests.HomePageTests@198b6731]" name="runCorrectChromeDriver" is-config="true" duration-ms="4549" started-at="2021-06-17T23:03:56 CDT" finished-at="2021-06-17T23:04:01 CDT">
+    <test name="Default test" duration-ms="11603" started-at="2021-06-19T16:41:24 CDT" finished-at="2021-06-19T16:41:36 CDT">
+      <class name="com.benchprep.sampletests.CodeWarsTests">
+        <test-method status="PASS" signature="runCorrectChromeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="runCorrectChromeDriver" is-config="true" duration-ms="2823" started-at="2021-06-19T16:41:24 CDT" finished-at="2021-06-19T16:41:27 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runCorrectChromeDriver -->
-        <test-method status="PASS" signature="testLogin()[pri:0, instance:com.springcm.homepagetests.HomePageTests@198b6731]" name="testLogin" duration-ms="160623" started-at="2021-06-17T23:04:01 CDT" finished-at="2021-06-17T23:06:42 CDT">
+        <test-method status="PASS" signature="testLogin()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="testLogin" duration-ms="5151" started-at="2021-06-19T16:41:27 CDT" finished-at="2021-06-19T16:41:32 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.springcm.homepagetests.HomePageTests@198b6731]" name="closeDriver" is-config="true" duration-ms="338" started-at="2021-06-17T23:06:42 CDT" finished-at="2021-06-17T23:06:42 CDT">
+        <test-method status="PASS" signature="testSearch()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="testSearch" duration-ms="3397" started-at="2021-06-19T16:41:32 CDT" depends-on-methods="com.benchprep.sampletests.CodeWarsTests.testLogin" finished-at="2021-06-19T16:41:36 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearch -->
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="closeDriver" is-config="true" duration-ms="169" started-at="2021-06-19T16:41:36 CDT" finished-at="2021-06-19T16:41:36 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeDriver -->
-      </class> <!-- com.springcm.homepagetests.HomePageTests -->
+      </class> <!-- com.benchprep.sampletests.CodeWarsTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -1,7 +1,10 @@
-package com.springcm.homepagetests;
+package com.benchprep.sampletests;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotSame;
+import static org.testng.Assert.assertTrue;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,10 +17,12 @@ import org.testng.annotations.Test;
 import com.java.pageobjects.AccountSettingsPage;
 import com.java.pageobjects.DashboardPage;
 import com.java.pageobjects.DashboardPage.MenuLinks;
+import com.java.pageobjects.DashboardPage.SidebarLinks;
 import com.java.pageobjects.HomePage;
+import com.java.pageobjects.KataPage;
 import com.java.pageobjects.LoginPage;
 
-public class HomePageTests {
+public class CodeWarsTests {
 
 	WebDriver driver;
 
@@ -44,10 +49,33 @@ public class HomePageTests {
 		AccountSettingsPage accountSettingPage = dashboardPage.clickMenuLink(MenuLinks.Account_Settings,
 				AccountSettingsPage.class);
 		assertEquals(accountSettingPage.getEmailInputFieldText(), loginPage.loginCredentials.get("Email"),
-				"Login failed, user didn't login as expected user. ");
+				"Login failed, expected user didn't login. ");
 	}
-	
-	
+
+	/**
+	 * Testing the Search functionality. Made it dependent on login test as we will
+	 * need to login first and land on Dashboard page before we can start searching
+	 * 
+	 * @throws Exception
+	 */
+	@Test(dependsOnMethods = { "testLogin" })
+	public void testSearch() throws Exception {
+
+		// landing on the search page
+		DashboardPage dashboardPage = DashboardPage.getPage(driver);
+		KataPage kataPage = dashboardPage.clickSidebarMenuLink(SidebarLinks.Kata, KataPage.class);
+
+		int numOfResultsBefore = kataPage.getNumberOfResults();
+
+		// entering random 2 alphabets and searching
+		kataPage.search(RandomStringUtils.randomAlphabetic(2));
+		assertTrue(kataPage.areResultsDisplayed(), "Results are not displayed. ");
+
+		int numOfResultsAfter = kataPage.getNumberOfResults();
+		assertTrue(numOfResultsAfter != numOfResultsBefore,
+				"Search didn't happen properly, number of results is the same. ");
+
+	}
 
 	/**
 	 * Project contains chrome drivers for both windows and mac. Based on the system
