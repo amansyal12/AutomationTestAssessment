@@ -3,13 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.springcm.homepagetests.HomePageTests">
+      <class name="com.benchprep.sampletests.CodeWarsTests">
         <methods>
-          <include name="testLogin"/>
           <include name="runCorrectChromeDriver"/>
           <include name="closeDriver"/>
+          <include name="testLogin"/>
+          <include name="testSearch"/>
         </methods>
-      </class> <!-- com.springcm.homepagetests.HomePageTests -->
+      </class> <!-- com.benchprep.sampletests.CodeWarsTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
