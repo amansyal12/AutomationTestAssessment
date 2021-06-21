@@ -1,5 +1,6 @@
 package com.java.abstractclass;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,11 +15,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPortalPage {
 
 	protected static final int DEFAULT_VISIBILITY_TIMEOUT = 30;
+
+	protected static final String SELF_X = "self::*";
 
 	// protected Actions actions;
 	protected WebDriver driver;
@@ -133,21 +137,37 @@ public abstract class AbstractPortalPage {
 		}
 	}
 
-	/**
-	 * Waits for the text passed as parameter to be displayed on the page.
-	 * 
-	 * @param text
-	 */
-	public void waitForDisplayTextVisibility(String text) {
-		waitForXPathVisibility("Text: " + text, String.format("//*[contains(text(), '%s')]", text));
-	}
-
 	protected static String getDescription(String value) {
 		String description = "<unspecified>";
 		if (value != null && !value.isEmpty()) {
 			description = value;
 		}
 		return description;
+	}
+
+	/**
+	 * A click implementation that will return an instance of a class.
+	 * 
+	 * @param buttonDescription
+	 * @param driver
+	 * @param button
+	 * @param proxy
+	 * @return
+	 * @throws Exception
+	 */
+	protected <T> T click(String buttonDescription, WebElement button, Class<T> proxy) throws Exception {
+		click(buttonDescription, button);
+		return getPage(driver, proxy);
+	}
+
+	/**
+	 * Click on an element.
+	 * 
+	 * @param elementDescription
+	 * @param element
+	 */
+	protected void click(String elementDescription, WebElement element) {
+		click(elementDescription, driver, element, getClass());
 	}
 
 	protected static void click(String elementDescription, WebDriver driver, WebElement element, Class<?> cls) {
@@ -187,31 +207,6 @@ public abstract class AbstractPortalPage {
 	}
 
 	/**
-	 * A click implementation that will return an instance of a class.
-	 * 
-	 * @param buttonDescription
-	 * @param driver
-	 * @param button
-	 * @param proxy
-	 * @return
-	 * @throws Exception
-	 */
-	protected <T> T click(String buttonDescription, WebElement button, Class<T> proxy) throws Exception {
-		click(buttonDescription, button);
-		return getPage(driver, proxy);
-	}
-
-	/**
-	 * Click on an element.
-	 * 
-	 * @param elementDescription
-	 * @param element
-	 */
-	protected void click(String elementDescription, WebElement element) {
-		click(elementDescription, driver, element, getClass());
-	}
-
-	/**
 	 * Enter text in an input field.
 	 * <ul>
 	 * <li>If newValue is null no action is taken..
@@ -228,6 +223,8 @@ public abstract class AbstractPortalPage {
 		String currentValue;
 
 		if (newValue != null) {
+			hover("An input field.", input);
+
 			// getting current value in input field
 			currentValue = getInputFieldText(input);
 			/*
@@ -357,25 +354,6 @@ public abstract class AbstractPortalPage {
 	}
 
 	/**
-	 * Waits for the number of driver windows to equal the selected.
-	 * 
-	 * @param driver
-	 * @param numberOfWindows
-	 */
-	protected static void waitForNumberOfWindowsToEqual(WebDriver driver, final int numberOfWindows) {
-		WebDriverWait wait = new WebDriverWait(driver, DEFAULT_VISIBILITY_TIMEOUT);
-		try {
-			wait.until(ExpectedConditions.numberOfWindowsToBe(numberOfWindows));
-		} catch (TimeoutException e) {
-			StringBuffer error = new StringBuffer("The expected minimum number of browser windows was not met after ");
-			error.append(DEFAULT_VISIBILITY_TIMEOUT);
-			error.append(" seconds. Expected: <").append(numberOfWindows);
-			error.append(">, Actual: <").append(driver.getWindowHandles().size()).append('>');
-			throw new AssertionError(error.toString(), e);
-		}
-	}
-
-	/**
 	 * Waits for the provided element is visible.
 	 * 
 	 * @param elementDescription
@@ -429,16 +407,94 @@ public abstract class AbstractPortalPage {
 		}
 	}
 
+	/**
+	 * Waits the text passed as parameter to not be visible on the element for which
+	 * xpath is passed.
+	 * 
+	 * @param xpath
+	 * @param elementDescription
+	 * @param text
+	 */
 	protected void waitForElementTextToChange(String xpath, String elementDescription, String text) {
-		WebDriverWait wait = new WebDriverWait(driver,30);
-		try {		
-			wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath(xpath), text)); 
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try {
+			wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath(xpath), text));
 		} catch (TimeoutException e) {
 			StringBuffer error = new StringBuffer();
-			error.append("Expected text '").append(text).append("' didn't change for ").append(getDescription(elementDescription));
+			error.append("Expected text '").append(text).append("' didn't change for ")
+					.append(getDescription(elementDescription));
 			error.append(" on ").append(getClass().getSimpleName());
 			error.append(" after ").append(DEFAULT_VISIBILITY_TIMEOUT).append(" seconds.");
 			throw new AssertionError(error.toString(), e);
 		}
+	}
+
+	/**
+	 * Selects an element from the drop down list.This method assumes explicitly
+	 * that the web element passed to it is a drop down (select html element) web
+	 * element. If null is passed, it doesn't select anything.
+	 * 
+	 * @param dropdown
+	 * @param text
+	 */
+	protected void selectDropDownOption(String elementName, WebElement dropdown, String textSelection) {
+
+		if (elementName == null) {
+			return;
+		}
+		Select select = new Select(dropdown);
+		String initialSelection = getText(select.getFirstSelectedOption());
+		boolean selectionChanging = false;
+		WebDriverWait wait;
+
+		selectionChanging = !textSelection.equals(initialSelection);
+		if (selectionChanging) {
+			try {
+				System.out.println("Switching from \"" + initialSelection + "\" to \"" + textSelection + "\"");
+				select.selectByVisibleText(textSelection);
+			} catch (Exception e) {
+				StringBuffer b = new StringBuffer();
+				b.append("Unable to select ");
+				b.append(textSelection);
+				b.append(" from the drop down menu labelled \"");
+				b.append(elementName);
+				b.append('.');
+				if (!StaleElementReferenceException.class.isInstance(e)) {
+					b.append(" The menus current option are : ");
+					b.append(Arrays.asList((getText(select.getOptions()))));
+				}
+				throw new AssertionError(b.toString(), e);
+			}
+
+			try {
+				wait = new WebDriverWait(driver, DEFAULT_VISIBILITY_TIMEOUT);
+				wait.until(new ExpectedCondition<Boolean>() {
+
+					@Override
+					public Boolean apply(WebDriver input) {
+						Boolean changed = null;
+						try {
+							if (!select.getFirstSelectedOption().getText().equals(initialSelection)) {
+								changed = true;
+							}
+						} catch (StaleElementReferenceException e) {
+							changed = true;
+						}
+						return changed;
+					}
+				});
+			} catch (Exception e) {
+				StringBuffer b = new StringBuffer();
+				b.append("Unable to verify that the selection has actually changed. ");
+				throw new AssertionError(b.toString(), e);
+			}
+		}
+	}
+
+	/**
+	 * Refreshes the page.
+	 */
+	public void refresh() {
+		driver.navigate().refresh();
 	}
 }

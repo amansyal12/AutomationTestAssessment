@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="11603" started-at="2021-06-19T16:41:24 CDT" finished-at="2021-06-19T16:41:36 CDT">
+  <suite name="Default suite" duration-ms="42640" started-at="2021-06-21T14:27:53 CDT" finished-at="2021-06-21T14:28:35 CDT">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="11603" started-at="2021-06-19T16:41:24 CDT" finished-at="2021-06-19T16:41:36 CDT">
+    <test name="Default test" duration-ms="42640" started-at="2021-06-21T14:27:53 CDT" finished-at="2021-06-21T14:28:35 CDT">
       <class name="com.benchprep.sampletests.CodeWarsTests">
-        <test-method status="PASS" signature="runCorrectChromeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="runCorrectChromeDriver" is-config="true" duration-ms="2823" started-at="2021-06-19T16:41:24 CDT" finished-at="2021-06-19T16:41:27 CDT">
+        <test-method status="PASS" signature="runCorrectChromeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="runCorrectChromeDriver" is-config="true" duration-ms="2692" started-at="2021-06-21T14:27:53 CDT" finished-at="2021-06-21T14:27:55 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runCorrectChromeDriver -->
-        <test-method status="PASS" signature="testLogin()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="testLogin" duration-ms="5151" started-at="2021-06-19T16:41:27 CDT" finished-at="2021-06-19T16:41:32 CDT">
+        <test-method status="PASS" signature="testEnrollInCourse()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="testEnrollInCourse" duration-ms="13372" started-at="2021-06-21T14:27:55 CDT" finished-at="2021-06-21T14:28:09 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEnrollInCourse -->
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="closeDriver" is-config="true" duration-ms="194" started-at="2021-06-21T14:28:09 CDT" finished-at="2021-06-21T14:28:09 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeDriver -->
+        <test-method status="PASS" signature="runCorrectChromeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="runCorrectChromeDriver" is-config="true" duration-ms="1752" started-at="2021-06-21T14:28:09 CDT" finished-at="2021-06-21T14:28:11 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runCorrectChromeDriver -->
+        <test-method status="PASS" signature="testLogin()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="testLogin" duration-ms="5512" started-at="2021-06-21T14:28:11 CDT" finished-at="2021-06-21T14:28:16 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method status="PASS" signature="testSearch()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="testSearch" duration-ms="3397" started-at="2021-06-19T16:41:32 CDT" depends-on-methods="com.benchprep.sampletests.CodeWarsTests.testLogin" finished-at="2021-06-19T16:41:36 CDT">
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="closeDriver" is-config="true" duration-ms="173" started-at="2021-06-21T14:28:16 CDT" finished-at="2021-06-21T14:28:16 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeDriver -->
+        <test-method status="PASS" signature="runCorrectChromeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="runCorrectChromeDriver" is-config="true" duration-ms="1731" started-at="2021-06-21T14:28:16 CDT" finished-at="2021-06-21T14:28:18 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runCorrectChromeDriver -->
+        <test-method status="PASS" signature="testLoginError()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="testLoginError" duration-ms="6649" started-at="2021-06-21T14:28:18 CDT" finished-at="2021-06-21T14:28:25 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginError -->
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="closeDriver" is-config="true" duration-ms="159" started-at="2021-06-21T14:28:25 CDT" finished-at="2021-06-21T14:28:25 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeDriver -->
+        <test-method status="PASS" signature="runCorrectChromeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="runCorrectChromeDriver" is-config="true" duration-ms="1709" started-at="2021-06-21T14:28:25 CDT" finished-at="2021-06-21T14:28:27 CDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runCorrectChromeDriver -->
+        <test-method status="PASS" signature="testSearch()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="testSearch" duration-ms="8464" started-at="2021-06-21T14:28:27 CDT" finished-at="2021-06-21T14:28:35 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSearch -->
-        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76f2b07d]" name="closeDriver" is-config="true" duration-ms="169" started-at="2021-06-19T16:41:36 CDT" finished-at="2021-06-19T16:41:36 CDT">
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.benchprep.sampletests.CodeWarsTests@76707e36]" name="closeDriver" is-config="true" duration-ms="179" started-at="2021-06-21T14:28:35 CDT" finished-at="2021-06-21T14:28:35 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeDriver -->

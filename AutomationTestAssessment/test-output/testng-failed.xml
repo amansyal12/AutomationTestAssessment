@@ -7,7 +7,7 @@
         <methods>
           <include name="runCorrectChromeDriver"/>
           <include name="closeDriver"/>
-          <include name="testLogin"/>
+          <include name="testEnrollInCourse"/>
           <include name="testSearch"/>
         </methods>
       </class> <!-- com.benchprep.sampletests.CodeWarsTests -->
