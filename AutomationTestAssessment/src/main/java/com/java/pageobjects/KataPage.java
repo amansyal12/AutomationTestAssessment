@@ -59,6 +59,12 @@ public class KataPage extends DashboardPage {
 		waitForXPathVisibility("Search results", SEARCH_RESULTS_X);
 	}
 
+	/**
+	 * Searches for the text passed by entering the value and clicking search button
+	 * for the results to show up.
+	 * 
+	 * @param text
+	 */
 	public void search(String text) {
 		WebElement numResultsEle = driver.findElement(By.xpath(NUM_OF_RESULTS_X));
 		click("Number of results element", numResultsEle);
@@ -111,7 +117,7 @@ public class KataPage extends DashboardPage {
 		List<WebElement> courseNamesEles = driver.findElements(By.xpath(xpath));
 		scrollPageDown();
 		scrollPageUp();
-		
+
 		return Arrays.asList(getText(courseNamesEles));
 	}
 

@@ -23,8 +23,11 @@ public class DashboardPage extends AbstractPortalPage {
 
 	public enum MenuLinks {
 
-		View_Profile("View Profile"), Account_Settings("Account Settings"), Training_Setup("Training Setup"),
-		Upgrade_to_Red("Upgrade to Red"), Sign_out("Sign out");
+		View_Profile("View Profile"), 
+		Account_Settings("Account Settings"), 
+		Training_Setup("Training Setup"),
+		Upgrade_to_Red("Upgrade to Red"), 
+		Sign_out("Sign out");
 
 		String text;
 
@@ -39,7 +42,12 @@ public class DashboardPage extends AbstractPortalPage {
 
 	public enum SidebarLinks {
 
-		Dashboard("Dashboard"), Kata("Kata"), Docs("Docs"), Blog("Blog"), Kumite("Kumite"), Forum("Forum"),
+		Dashboard("Dashboard"), 
+		Kata("Kata"), 
+		Docs("Docs"), 
+		Blog("Blog"), 
+		Kumite("Kumite"), 
+		Forum("Forum"),
 		Leaders("Leaders");
 
 		String text;
@@ -73,7 +81,7 @@ public class DashboardPage extends AbstractPortalPage {
 	}
 
 	/**
-	 * Clicking on the menu link passed and lands on the expected page.
+	 * Clicking on the menu link passed for the menu items on top right corner of the screen after hovering on user's profile picture and lands on the expected page.
 	 * 
 	 * @param menuLink
 	 * @param proxy
@@ -89,7 +97,7 @@ public class DashboardPage extends AbstractPortalPage {
 	}
 
 	/**
-	 * Clicking on the side bar link passed and lands on the expected page.
+	 * Clicking on the side bar link passed after hovering over the side bar and lands on the expected page.
 	 * 
 	 * @param sideLink
 	 * @param proxy

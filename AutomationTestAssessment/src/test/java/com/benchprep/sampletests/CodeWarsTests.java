@@ -77,7 +77,9 @@ public class CodeWarsTests {
 		KataPage kataPage = dashboardPage.clickSidebarMenuLink(SidebarLinks.Kata, KataPage.class);
 
 		int numOfResultsBefore = kataPage.getNumberOfResults();
-
+		kataPage.scrollPageDown();
+		kataPage.scrollPageUp();
+		
 		// entering random 2 alphabets and searching
 		kataPage.refresh();
 		kataPage.selectLanguage("All");

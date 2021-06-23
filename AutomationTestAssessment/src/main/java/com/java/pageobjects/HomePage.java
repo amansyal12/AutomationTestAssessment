@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.java.abstractclass.AbstractPortalPage;
 
-
 public class HomePage extends AbstractPortalPage {
 
 	// xpaths for elements on page
@@ -43,6 +42,11 @@ public class HomePage extends AbstractPortalPage {
 		return AbstractPortalPage.getPage(driver, HomePage.class);
 	}
 
+	/**
+	 * Clicks on the login link and user lands on the login page.
+	 * 
+	 * @return LoginPage
+	 */
 	public LoginPage clickLoginLink() throws Exception {
 		return click("Login link", loginLink, LoginPage.class);
 	}
